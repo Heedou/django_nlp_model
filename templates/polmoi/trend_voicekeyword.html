@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="{% url 'polmoi:index' %}">PolMoi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'polmoi:index' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</header>
+<div> blank</div>
+<div class="container">
+    <br>
+    <h1>키워드 추출 모델을 활용한 112 신고 범죄 수법 변화 분석</h1>
+    <br>
+    <br>
+    <p class="lead text-muted"> 키워드 추출 모델을 활용하여 과거 112 신고 내용 중 보이스피싱 범죄 수법과 관련한 키워드를 추출하였다. </p>
+    <p class="lead text-muted"> 그 결과, 월별로 도출된 키워드의 통계치와 새로운 키워드에 대한 확인을 통해 범죄 수법의 변화를 관찰할 수 있었다.</p>
+    <p class="lead text-muted">아래 그래프를 통해 2021년 1,2,3월의 보이스피싱 범죄 수법 별 키워드 통계의 변화를 확인할 수 있다. </p>
+
+{%load plotly_dash%}
+    <br>
+    <h3>2021년 1월 신고 키워드</h3>
+{%plotly_app name="Keyword_statistic_2101" ratio=0.45 %}
+
+    <h3>2021년 2월 신고 키워드</h3>
+  {%plotly_app name="Keyword_statistic_2102" ratio=0.45 %}
+
+    <h3>2021년 3월 신고 키워드</h3>
+  {%plotly_app name="Keyword_statistic_2103" ratio=0.45 %}
+    <br>
+    <br>
+    <br>
+<p class="lead text-muted"> 아래 그림은 키워트 텍스트에 대한 임베딩 결과로, 유사한 키워드끼리 서로 그래프 상에 뭉쳐 있는 모습을 볼 수 있는 그림이다.
+            </p>
+
+    {%plotly_app name="Keyword_embedding_2101" ratio=0.45 %}
+
+    {%plotly_app name="Keyword_embedding_2102" ratio=0.45 %}
+
+    {%plotly_app name="Keyword_embedding_2103" ratio=0.45 %}
+</div>
+
+{% endblock %}

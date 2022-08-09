@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Crime Data Science Platform</title>
+<!--    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">-->
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}" >
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="{% url 'polmoi:index' %}">PolMoi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'polmoi:index' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+    	<style type="text/css">
+		.sidenav {
+			height:100%;
+			width:160px;
+			position: fixed;
+			z-index:1;
+			top:0;
+			left:0;
+			background-color:rgb(52,58,64);
+			overflow-x: :hidden;
+			padding-top:80px;
+		}
+
+		.sidenav a {
+			padding:6px 8px 6px 16px;
+			text-decoration: none;
+			font-size:15px;
+			color: White;
+			display:block;
+		}
+
+		.sidenav a:hover{
+			color:#f1f1f1;
+		}
+
+		.main{
+			margin-left:160px;
+			padding: 0px 10px;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="sidenav">
+		<a href="{% url 'polmoi:investigationmain' %}">사건 관계망 분석</a>
+		<a href="{% url 'polmoi:investigationflow' %}">수사 플로우</a>
+		<a href="#"></a>
+	</div>
+
+    <div>blank</div>
+    <div>blank</div>
+<!--기본 템플릿 안에 삽입될 내용-->
+{% block content %}
+{% endblock %}
+<!--기본 템플릿 안세 삽입될 내용 end-->
+
+</body>
+</html>

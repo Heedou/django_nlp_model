@@ -1,0 +1,85 @@
+{% extends 'base_investigation_sidebar.html' %}
+{% block content %}
+
+<div class="container">
+
+          <form action="{% url 'polmoi:investigationmain'%}" method="post">
+              <h3>1. Extract Entity <button type="submit" class="btn btn-success">Apply</button> </h3>
+
+            {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6">
+                      <br>
+                      <h5>Case-A</h5>
+                      {% if original1 %}
+                      <textarea placeholder="텍스트 입력" name="content" style="width:540px;height:200px;">{{original1}}</textarea>
+                      {% else %}
+                      <textarea placeholder="텍스트 입력" name="content" style="width:540px;height:200px;"></textarea>
+                      {% endif %}
+                </div>
+                  <div class="col-md-6">
+                      <br>
+                      <h5>Case-B</h5>
+                      {% if original2 %}
+                      <textarea placeholder="텍스트 입력" name="content2" style="width:540px;height:200px;">{{original2}}</textarea>
+                      {% else %}
+                      <textarea placeholder="텍스트 입력" name="content2" style="width:540px;height:200px;"></textarea>
+                      {% endif %}
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      {% if cleaned %}
+                        <div class="input-group">
+                            <span class="input-group-text">모델 적용 결과</span>
+                            <textarea class="form-control" aria-label="With textarea"  rows="14" name="result">{{cleaned}}</textarea>
+                        </div>
+                      {% elif inputtext %}
+                        <div class="input-group">
+                            <span class="input-group-text">모델 적용 결과</span>
+                            <textarea class="form-control" aria-label="With textarea"  rows="14"  name="result">{{inputtext}}</textarea>
+                        </div>
+                      {% else %}
+                      <div class="input-group">
+                            <span class="input-group-text">모델 적용 결과</span>
+                            <textarea class="form-control" aria-label="With textarea"  rows="14"  name="result"></textarea>
+                        </div>
+                      {% endif %}
+                  </div>
+                  <div class="col-md-6">
+                      {% if cleaned2 %}
+                        <div class="input-group">
+                            <span class="input-group-text">모델 적용 결과</span>
+                            <textarea class="form-control" aria-label="With textarea"  rows="14" name="result2">{{cleaned2}}</textarea>
+                        </div>
+                      {% elif inputtext2 %}
+                        <div class="input-group">
+                            <span class="input-group-text">모델 적용 결과</span>
+                            <textarea class="form-control" aria-label="With textarea"  rows="14" name="result2">{{inputtext2}}</textarea>
+                        </div>
+                      {% else %}
+                      <div class="input-group">
+                            <span class="input-group-text">모델 적용 결과</span>
+                            <textarea class="form-control" aria-label="With textarea"  rows="14"  name="result2"></textarea>
+                        </div>
+                      {% endif %}
+                  </div>
+              </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h3>2. Crime Network <button type="submit" class="btn btn-dark">Apply</button></h3>
+            {% if cleaned2 %}
+            {%load plotly_dash%}
+
+            {%plotly_app name="NetworkResult" ratio=0.67 %}
+            {% else %}
+            <p5>blank</p5>
+            {% endif %}
+
+
+          </form>
+</div>
+
+{% endblock %}

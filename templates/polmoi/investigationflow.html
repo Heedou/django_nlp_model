@@ -1,0 +1,231 @@
+{% extends 'base_investigation_sidebar.html' %}
+{% block content %}
+
+<style>
+    .container-dash {
+        margin : 0px;
+        padding : 0px;
+        width : 2000px;
+        height : 700px;
+        position: absolute;
+        top: 70px;
+        left: 200px;
+    }
+
+    .container-dash2 {
+        margin : 0px;
+        padding : 0px;
+        width : 2000px;
+        height : 700px;
+        position: absolute;
+        top: 400px;
+        left: 200px;
+        float : left;
+    }
+
+    .container-dash3 {
+        margin : 0px;
+        padding : 0px;
+        width : 1700px;
+        height : 700px;
+        position: absolute;
+        top: 1100px;
+        left: 200px;
+        float : left;
+    }
+
+    .container-innerdash{
+        float : left;
+        width : 1800px;
+        display:table-cell;
+        vertical-align:middle;
+
+    }
+
+</style>
+
+<div class="container-dash">
+    <h2><button type="button" class="btn btn-primary btn-lg">Step1 : 유사도 분석 등을 통한 1차 사건 검색</button></h2>
+        <div class="card" style="width: 30rem;float : left;">
+          <div class="card-body">
+            <h5 class="card-title">전체 사건개요 상정(진술 등에 의한 가설)</h5>
+            <p class="card-text">불상의 보이스피싱 조직이 2019. 1. 1.부터 2019. 3. 1.까지 "현대캐피탈 김충원, 이흥수, 고길동, 강철민 대리 및 이재형 과장" 등을 사칭하여 피해자 이말숙, 홍길동 등 25명으로부터 총 9억 3천여 만원을 편취한 사건</p>
+              <br>
+              <br>
+          </div>
+        </div>
+
+        <div style="width:50px;float:left;">
+            <br>
+            <br>
+            <br>
+            ----->
+        </div>
+        <div class="card" style="width: 30rem;float : left;">
+          <div class="card-body">
+            <h5 class="card-title">최초 단서(입력조건)</h5>
+            <p class="card-text">
+                <ul>
+                    <li>목소리 파일 1개 : 20190201.mp4</li>
+                    <li>사칭기관, 이름 1개 : 현대캐피탈 고길동 대리 사칭</li>
+                    <li>특정일시 1개 : 2019년 2월 3일 11:12경</li>
+                    <li>범행계좌 1개 : 국민은행 홍길동 2xxxx31-11-45xxxx4</li>
+                </ul>
+            </p>
+          </div>
+        </div>
+
+        <div style="width:50px;float:left;">
+            <br>
+            <br>
+            <br>
+            ----->
+        </div>
+
+        <table class="table table-sm" style="width:520px;">
+          <button type="button" class="btn btn-dark">1차 사건 검색결과</button>
+          <span>        </span>
+          <button type="button" class="btn btn-success">사건목록 다운로드</button>
+
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">사건번호</th>
+              <th scope="col">관할서</th>
+              <th scope="col">범죄사실</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>2019003041</td>
+              <td>서울강남경찰서</td>
+              <td>불상의 피의자는 현대캐피탈을 사칭하여..</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>2019401011</td>
+               <td>서울영등포경찰서</td>
+              <td>피의자는 현대캐피탈 이흥수 대리를 사칭한 자로..</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>2019049112</td>
+              <td>경기분당경찰서</td>
+              <td>피의자는 피해자 홍길동에게 전화를 걸어 "현대캐피탈 김충원 대리입니다...</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+</div>
+
+<div class="container-dash2">
+        <h2><button type="button" class="btn btn-primary btn-lg">Step2 : 네트워크 분석을 통한 유사사건의 확장과 계좌 추출</button></h2>
+        <div class="card" style="width: 50rem;float : left;">
+          <div class="card-body">
+            <h5 class="card-title">동일사건 분류</h5>
+
+                {%load plotly_dash%}
+                {%plotly_app name="NetworkExample" ratio=0.7 %}
+
+          </div>
+        </div>
+
+        <div style="width:50px;float:left;">
+            <br>
+            <br>
+            <br>
+            ----->
+        </div>
+
+        <table class="table table-sm" style="width:750px;">
+          <button type="button" class="btn btn-dark">거래내역 확인 대상 계좌번호 획득</button>
+            <span>        </span>
+            <button type="button" class="btn btn-success">범죄일람표 다운로드</button>
+             or
+            <button type="button" class="btn btn-success">영장 신청 양식으로 저장</button>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">사건번호</th>
+              <th scope="col">관할서</th>
+              <th scope="col">범죄사실</th>
+              <th scope="col">범행계좌</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>2019003041</td>
+              <td>서울강남경찰서</td>
+              <td>불상의 피의자는 현대캐피탈을 사칭하여..</td>
+              <td>국민은행_김xx_xxxx8-239xxxx187</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>2019401011</td>
+               <td>서울영등포경찰서</td>
+              <td>피의자는 현대캐피탈 이흥수 대리를 사칭한 자로..</td>
+              <td>신한은행_최xx_23xxx8-xxxx5114</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>2019049112</td>
+              <td>경기분당경찰서</td>
+              <td>피의자는 피해자 홍길동에게 전화를 걸어 "현대캐피탈 김충원 대리입니다...</td>
+              <td>농협은행_이xx_xxx958-239xxxx87</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td><h3>+ 사건 확장</h3></td>
+                <td></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>2019061342</td>
+              <td>경기수원남부경찰서</td>
+              <td>피의자는 일체의 신원을 알 수 없는 자이다...</td>
+              <td>하나은행_이xx_2xxxx-23xxxx87</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>2019325812</td>
+              <td>경북포항경찰서</td>
+              <td>일체 불상의 보이스피싱 조직은 '김충원, 이흥수 등을 사칭하여'...</td>
+              <td>기업은행_최xx_3xxxx-12xxxxxx</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>2019647134</td>
+              <td>전남여수경찰서</td>
+              <td>피의자는 피해자 홍길동에게 전화를 걸어 "현대캐피탈 강철민 대리와 이재형 과장입니다...</td>
+              <td>국민은행_구xx_4xxxxx-15xxx-1xx</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>2019049112</td>
+              <td>경기분당경찰서</td>
+              <td>피의자는 피해자 홍길동에게 전화를 걸어 "현대캐피탈 김충원 대리입니다...</td>
+              <td>농협은행_김xx_3xxxxx-xxxx18x</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+</div>
+
+<div class="container-dash3">
+        <h2><button type="button" class="btn btn-primary btn-lg">Step3 : 압수한 계좌내역의 흐름 분석</button></h2>
+
+
+                {%load plotly_dash%}
+                {%plotly_app name="Sankey" ratio=0.7 %}
+
+
+
+</div>
+{% endblock %}

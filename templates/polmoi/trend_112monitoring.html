@@ -1,0 +1,36 @@
+{% extends 'base_sidebar.html' %}
+{% block content %}
+
+<div class="container">
+
+  {%load plotly_dash%}
+            <div class="row">
+            <div class="col-md-6">
+              {%plotly_app name="SimpleExample" ratio=0.9 %}
+            </div>
+<!--                <div class="col-md-1"></div>-->
+            <div class="col-md-6">
+              {%plotly_app name="SimpleExample" ratio=0.9 %}
+
+            </div>
+
+      </div>
+    <br>
+                <br>
+                <div class="row">
+            <div class="col-md-6">
+              {%plotly_app name="SimpleExample" ratio=0.9 %}
+            </div>
+<!--                    <div class="col-md-1"></div>-->
+            <div class="col-md-6">
+              {%plotly_app name="SimpleExample" ratio=0.9 %}
+
+            </div>
+
+
+
+      </div>
+
+
+</div>
+{% endblock %}
